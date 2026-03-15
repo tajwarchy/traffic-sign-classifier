@@ -18,9 +18,9 @@ model:
 
 training:
   epochs: 30
-  batch_size: 64
-  num_workers: 4
-  image_size: 224
+  batch_size: 64        # larger batch = fewer steps per epoch = faster
+  num_workers: 4        # parallel CPU workers feed MPS faster
+  image_size: 128       # EfficientNet-B0 works great at 128 for GTSRB
   learning_rate: 1.0e-3
   weight_decay: 1.0e-4
   scheduler: "cosine"       # Options: cosine, onecycle

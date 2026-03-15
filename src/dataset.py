@@ -31,6 +31,7 @@ from src.augmentation import (
     get_inference_transforms,
     load_config,
 )
+from src.models.classifier import get_device
 
 
 # ── Class name mapping ─────────────────────────────────────────────────────────
@@ -157,6 +158,11 @@ class GTSRBDataset(Dataset):
 
 # ── DataLoader factory ─────────────────────────────────────────────────────────
 
+def _pin_memory(device: torch.device) -> bool:
+    """pin_memory is only beneficial on CUDA; MPS doesn't support it."""
+    return device.type == "cuda"
+
+
 def build_dataloaders(
     config_path: str = "configs/train_config.yaml",
 ) -> tuple[DataLoader, DataLoader, DataLoader]:
@@ -189,13 +195,16 @@ def build_dataloaders(
         )
         print("  Using WeightedRandomSampler for training.")
 
+    device = get_device(config)
+    pin    = _pin_memory(device)
+
     train_loader = DataLoader(
         train_ds,
         batch_size=train_cfg["batch_size"],
-        shuffle=(sampler is None),   # shuffle only if no sampler
+        shuffle=(sampler is None),
         sampler=sampler,
         num_workers=train_cfg["num_workers"],
-        pin_memory=True,
+        pin_memory=pin,
         persistent_workers=train_cfg["num_workers"] > 0,
     )
     val_loader = DataLoader(
@@ -203,7 +212,7 @@ def build_dataloaders(
         batch_size=train_cfg["batch_size"],
         shuffle=False,
         num_workers=train_cfg["num_workers"],
-        pin_memory=True,
+        pin_memory=pin,
         persistent_workers=train_cfg["num_workers"] > 0,
     )
     test_loader = DataLoader(
@@ -211,7 +220,7 @@ def build_dataloaders(
         batch_size=train_cfg["batch_size"],
         shuffle=False,
         num_workers=train_cfg["num_workers"],
-        pin_memory=True,
+        pin_memory=pin,
         persistent_workers=train_cfg["num_workers"] > 0,
     )
 
