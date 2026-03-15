@@ -273,5 +273,8 @@
       "val_acc": 0.99771,
       "lr": 1e-06
     }
-  ]
+  ],
+  "test_accuracy": 0.980998,
+  "test_macro_f1": 0.978584,
+  "test_weighted_f1": 0.981017
 }

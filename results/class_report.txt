@@ -1,0 +1,52 @@
+GTSRB Test Set — Classification Report
+================================================================================
+
+                       precision    recall  f1-score   support
+
+       Speed limit 20     1.0000    0.9667    0.9831        60
+       Speed limit 30     0.9657    0.9778    0.9717       720
+       Speed limit 50     0.9352    0.9813    0.9577       750
+       Speed limit 60     0.9930    0.9467    0.9693       450
+       Speed limit 70     0.9893    0.9818    0.9856       660
+       Speed limit 80     0.9624    0.9333    0.9476       630
+End of speed limit 80     1.0000    0.9867    0.9933       150
+      Speed limit 100     0.9910    0.9800    0.9855       450
+      Speed limit 120     0.9667    0.9689    0.9678       450
+           No passing     0.9979    0.9979    0.9979       480
+    No passing (3.5t)     0.9940    1.0000    0.9970       660
+         Right-of-way     0.9880    0.9762    0.9820       420
+        Priority road     1.0000    0.9971    0.9985       690
+                Yield     0.9931    0.9958    0.9945       720
+                 Stop     1.0000    1.0000    1.0000       270
+          No vehicles     0.9952    0.9905    0.9928       210
+   No vehicles (3.5t)     1.0000    1.0000    1.0000       150
+             No entry     1.0000    1.0000    1.0000       360
+      General caution     1.0000    0.9667    0.9831       390
+ Dangerous curve left     0.8696    1.0000    0.9302        60
+Dangerous curve right     0.9468    0.9889    0.9674        90
+         Double curve     0.9877    0.8889    0.9357        90
+           Bumpy road     1.0000    0.9250    0.9610       120
+        Slippery road     0.9932    0.9800    0.9866       150
+   Road narrows right     0.9888    0.9778    0.9832        90
+            Road work     0.9710    0.9771    0.9740       480
+      Traffic signals     0.9831    0.9722    0.9777       180
+          Pedestrians     0.8696    1.0000    0.9302        60
+    Children crossing     0.9548    0.9867    0.9705       150
+    Bicycles crossing     1.0000    0.9778    0.9888        90
+      Beware ice/snow     0.9423    0.9800    0.9608       150
+Wild animals crossing     0.9639    0.9889    0.9762       270
+       End all limits     0.9836    1.0000    0.9917        60
+     Turn right ahead     1.0000    0.9905    0.9952       210
+      Turn left ahead     0.9836    1.0000    0.9917       120
+           Ahead only     0.9796    0.9872    0.9834       390
+ Go straight or right     0.9652    0.9250    0.9447       120
+  Go straight or left     0.9836    1.0000    0.9917        60
+           Keep right     0.9928    0.9971    0.9949       690
+            Keep left     0.9677    1.0000    0.9836        90
+ Roundabout mandatory     0.9885    0.9556    0.9718        90
+    End of no passing     0.9836    1.0000    0.9917        60
+End no passing (3.5t)     0.9889    0.9889    0.9889        90
+
+             accuracy                         0.9810     12630
+            macro avg     0.9781    0.9799    0.9786     12630
+         weighted avg     0.9814    0.9810    0.9810     12630
