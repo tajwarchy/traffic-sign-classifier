@@ -1,0 +1,61 @@
+data:
+  raw_dir: "data/raw/GTSRB"
+  processed_dir: "data/processed"
+  train_dir: "data/processed/train"
+  val_dir: "data/processed/val"
+  test_dir: "data/processed/test"
+  num_classes: 43
+  val_split: 0.2
+  random_seed: 42
+
+model:
+  backbone: "efficientnet_b0"
+  pretrained: true
+  dropout1: 0.4
+  dropout2: 0.3
+  hidden_dim: 512
+  freeze_epochs: 5          # Freeze backbone for first N epochs
+
+training:
+  epochs: 30
+  batch_size: 64
+  num_workers: 4
+  image_size: 224
+  learning_rate: 1.0e-3
+  weight_decay: 1.0e-4
+  scheduler: "cosine"       # Options: cosine, onecycle
+  use_weighted_loss: true
+  use_weighted_sampler: false
+
+augmentation:
+  train:
+    random_brightness_contrast: true
+    brightness_limit: 0.3
+    contrast_limit: 0.3
+    motion_blur: true
+    blur_limit: 5
+    gauss_noise: true
+    shift_scale_rotate: true
+    shift_limit: 0.1
+    scale_limit: 0.2
+    rotate_limit: 15
+    clahe: true
+    coarse_dropout: true
+    max_holes: 4
+    max_height: 16
+    max_width: 16
+  normalize:
+    mean: [0.3337, 0.3064, 0.3171]   # GTSRB channel means
+    std: [0.2672, 0.2564, 0.2629]    # GTSRB channel stds
+
+inference:
+  confidence_threshold: 0.70
+  weights_path: "weights/best_model.pth"
+  device: "auto"            # auto, cpu, cuda, mps
+
+paths:
+  weights_dir: "weights"
+  results_dir: "results"
+  confusion_matrix: "results/confusion_matrix.png"
+  class_report: "results/class_report.txt"
+  metrics: "results/metrics.json"
